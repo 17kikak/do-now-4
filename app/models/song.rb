@@ -1,4 +1,5 @@
 class Song < ApplicationRecord
+  belongs_to :album
   validates :name, presence: true
   validates :song_length, presence: true
   validates :album, presence: true
