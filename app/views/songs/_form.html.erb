@@ -1,5 +1,5 @@
-<%= form_with(model: album_song, local: true) do |form| %>
-  <% if album_song_path.errors.any? %>
+<%= form_with(model: @song, url: [@album, @song], local: true) do |form| %>
+  <% if album_song_path(song, song.id).errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(song.errors.count, "error") %> prohibited this song from being saved:</h2>
 
