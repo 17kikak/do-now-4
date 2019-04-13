@@ -14,22 +14,25 @@ class SongsController < ApplicationController
 
   # GET /songs/new
   def new
-    @song = Song.new
+    @album = Album.find(params[:album_id])
+    @song = @album.songs.new
   end
 
   # GET /songs/1/edit
   def edit
-    @song = Song.new
+    @album = Album.find(params[:album_id])
+    @song = @album.songs.find(params[:id])
   end
 
   # POST /songs
   # POST /songs.json
   def create
-    @song = Song.new(song_params)
+    @album = Album.find(params[:album_id])
+    @song = @album.songs.new(song_params)
 
     respond_to do |format|
       if @song.save
-        format.html { redirect_to @song, notice: 'Song was successfully created.' }
+        format.html { redirect_to [@album, @song], notice: 'Song was successfully created.' }
         format.json { render :show, status: :created, location: @song }
       else
         format.html { render :new }
